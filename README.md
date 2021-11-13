@@ -54,7 +54,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://lethbridgewind.com)
 
 Inspired by living in a forever windy city, I just wanted a quick way to see how windy it was outside. The OpenWeatherMap API is used to derive the current temperature and wind information for a given city. Including both sustained wind and gust data. It's the gust speed that's truly important. That's what will knock you off your bike on your way to work.
 
@@ -168,3 +168,7 @@ Chris Morris - [@website](https://chris-morris.net) - chris.morris3@gmail.com
 Project Link: [https://github.com/ChrisMorrisDev/windy](https://github.com/ChrisMorrisDev/windy)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+[product-screenshot]: src/img/screenshot.png
