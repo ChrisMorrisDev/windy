@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ChrisMorrisDev/windy">
-    <img src="src/img/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/img/logo.png" alt="Logo" width="80" height="60">
   </a>
 
   <h3 align="center">Windy</h3>
