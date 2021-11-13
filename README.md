@@ -171,4 +171,4 @@ Project Link: [https://github.com/ChrisMorrisDev/windy](https://github.com/Chris
 
 
 
-[product-screenshot]: src/img/screenshot.png
+[product-screenshot]: src/img/screenshot.jpg
