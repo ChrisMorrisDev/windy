@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CSS/weather-icons-wind.css" />
+    <link rel="stylesheet" href="CSS/weather-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/12cd766bed.js" crossorigin="anonymous"></script>
+    <title>Lethbridge, Alberta Wind</title>
+  </head>
+  <body>
+    <div class="alert">
+      <div class="alertInner">
+        <span class="closeBtn">&times;</span>
+        <p>Location Services are Disabled</p>
+      </div>
+    </div>
+    <div class="container center">
+      <div id="header">
+        <div class="menu_container">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+
+        <div class="empty_div">
+          <div class="getLocation">
+            <button><i class="fas fa-map-marker-alt"></i></button>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+        </div>
+
+        <div class="logo">
+          <img src="./img/logo.png" alt="Lethbridge Wind" title="Lethbridge Wind" >
+        </div>
+
+        <div id="searchFormM">
+          <form id="mobileSearch">
+            <input type="text" class="searchInput" placeholder="Search for a city" autofocus>
+            <button type="submit"><i class="fas fa-search"></i></button>
+            <span class="msg"></span>
+          </form>
+        </div>
+
+      </div>
+
+      <h1 class="title">Lethbridge</h1>
+
+      <h2 class="titleDate">Tuesday, Oct 12</h2>
+      
+      <div id="compassBG">
+        <div id="weather-icon"><img src="https://openweathermap.org/img/wn/01d@2x.png" title="" alt="" id="weatherIcon" /></div>
+        <div id="weather-desc"><h3>Undefined</h3></div>
+        <div class="circle">
+        </div>
+        <div id="arrow"></div>
+        <div id="temperature"><h3>0&#8451</h3></div>
+        <div id="windSpeed"><h3>Wind 0km/h</h3></div>
+        <div id="windGust"><h3>Gusts 0km/h</h3></div>
+        <div id="windDirection"><h3>wsw</h3></div>
+      
+      </div>
+      <div class="dark">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+          <span class="daytime"><i class="fas fa-sun"></i></span>
+          <span class="night"><i class="fas fa-moon"></i></span>
+        </label>
+      </div>
+
+      <div id="coords"><p>Lat: 49.7 Lng: -112.8186</p></div>
+      <div id="date"><p>Last Updated:</p></div>
+      <div id="author"><p>&copy; <a href = "https://www.chris-morris.net" title="Chris Morris">Chris Morris</a> - 2021 | "I hate the wind"</p></div>
+
+    </div>
+  </body>
+  <script src="index.js" type="module"></script>
+  
+</html>

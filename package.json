@@ -1,0 +1,30 @@
+{
+  "name": "lethbridgewind",
+  "version": "1.0.0",
+  "description": "Lethbridge Wind",
+  "scripts": {
+    "start": "parcel src/index.html -p 3000 --open",
+    "build:parcel": "parcel build ./src/index.html --public-url ./ --no-source-maps",
+    "build": "npm run clean && npm run build:parcel",
+    "clean": "rm -rf dist/*"
+  },
+  "keywords": [
+    "wind"
+  ],
+  "browserslist": [
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
+  ],
+  "author": "Chris Morris",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "cssnano": "^5.0.8"
+  }
+}
