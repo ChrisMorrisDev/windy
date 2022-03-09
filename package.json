@@ -4,7 +4,7 @@
   "description": "Lethbridge Wind",
   "scripts": {
     "start": "parcel src/index.html -p 3000 --open",
-    "build:parcel": "parcel build /src/index.html --public-url / --no-source-maps",
+    "build:parcel": "parcel build ./src/index.html --public-url ./ --no-source-maps",
     "build": "npm run clean && npm run build:parcel",
     "clean": "rm -rf dist/*"
   },
