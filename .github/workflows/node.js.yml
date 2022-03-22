@@ -46,12 +46,12 @@ jobs:
     # - name: Deploy
     #   run: aws s3 sync ./dist s3://test-bucket-cmorris
     - name: Deploy
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          ssh-keyscan $SERVER_IP >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-          touch ssh_key
-          (echo "$SSH_PRIVATE_KEY") > ssh_key
-          chmod 600 ssh_key
-          scp -r -i ssh_key ./dist root@$SERVER_IP:/var/www/html
+      run: |
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        ssh-keyscan $SERVER_IP >> ~/.ssh/known_hosts
+        chmod 600 ~/.ssh/known_hosts
+        touch ssh_key
+        (echo "$SSH_PRIVATE_KEY") > ssh_key
+        chmod 600 ssh_key
+        scp -r -i ssh_key ./dist root@$SERVER_IP:/var/www/html
