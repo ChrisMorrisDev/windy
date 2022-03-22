@@ -28,28 +28,30 @@ jobs:
         cache: 'npm'
       env:
           API_KEY: ${{ secrets.API_KEY }}
+          DROPLET_IP: ${{ secrets.DROPLET_IP }}
+          DROPLET_SSH_KEY: ${{ secrets.DROPLET_SSH_KEY }}
     - name: Make envfile
       uses: SpicyPizza/create-envfile@v1
       with:
         envkey_API_KEY: ${{ secrets.API_KEY }}
         file_name: .env
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ca-central-1
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: ca-central-1
     - run: npm ci
     - run: npm run build --if-present
-    - name: Remove from S3
-      uses: vitorsgomes/s3-rm-action@master
-      with:
-        args: --recursive
-      env:
-        AWS_S3_BUCKET: test-bucket-cmorris
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ca-central-1
-        PATH_TO_DELETE: /
+    # - name: Deploy
+    #   run: aws s3 sync ./dist s3://test-bucket-cmorris
     - name: Deploy
-      run: aws s3 sync ./dist s3://test-bucket-cmorris
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan $SERVER_IP >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          touch ssh_key
+          (echo "$SSH_PRIVATE_KEY") > ssh_key
+          chmod 600 ssh_key
+          scp -r -i ssh_key ./dist root@$SERVER_IP:/var/www/html
