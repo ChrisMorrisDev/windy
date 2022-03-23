@@ -30,6 +30,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           DROPLET_IP: ${{ secrets.DROPLET_IP }}
           DROPLET_SSH_KEY: ${{ secrets.DROPLET_SSH_KEY }}
+          DROPLET_USER: ${{ secrets.DROPLET_USER }}
     - name: Make envfile
       uses: SpicyPizza/create-envfile@v1
       with:
@@ -41,17 +42,16 @@ jobs:
     #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
     #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     #     aws-region: ca-central-1
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.DROPLET_SSH_KEY }}
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
     - run: npm ci
     - run: npm run build --if-present
+    - name: Deploy Files to DO
+      run: rsync -a /var/www/domain.com/public_html/ /var/www/domain.com/public_html_backup/
+      run: rsync -a ./dist ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/var/www/html/
     # - name: Deploy
     #   run: aws s3 sync ./dist s3://test-bucket-cmorris
-    - name: Deploy
-      run: |
-        mkdir -p ~/.ssh
-        chmod 700 ~/.ssh
-        ssh-keyscan $SERVER_IP >> ~/.ssh/known_hosts
-        chmod 600 ~/.ssh/known_hosts
-        touch ssh_key
-        (echo "$SSH_PRIVATE_KEY") > ssh_key
-        chmod 600 ssh_key
-        scp -r -i ssh_key ./dist root@$SERVER_IP:/var/www/html
