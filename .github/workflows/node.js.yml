@@ -51,7 +51,6 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Deploy Files to DO
-      run: rsync -a /var/www/domain.com/public_html/ /var/www/domain.com/public_html_backup/
       run: rsync -a ./dist ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/var/www/html/
     # - name: Deploy
     #   run: aws s3 sync ./dist s3://test-bucket-cmorris
