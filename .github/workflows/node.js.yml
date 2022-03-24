@@ -1,3 +1,7 @@
+# Build & Deploy Lethbridgewind.com
+# Author: Chris Morris | chris.morris3@gmail.com
+# https://chris-morris.net
+
 name: Node.js CI
 
 on:
@@ -8,7 +12,8 @@ on:
 
 jobs:
   build:
-
+  
+    # Build it on Ubuntu
     runs-on: ubuntu-latest
 
     # Clean Installation of Node
@@ -64,6 +69,8 @@ jobs:
         username: ${{ secrets.DROPLET_USER }}
         key: ${{ secrets.DROPLET_SSH_KEY }}
         port: ${{ secrets.DROPLET_SSH_PORT }}
-        script: mkdir /var/www/test/
-    - name: Deploy Files to DO                               # Deploy to server
-      run: rsync -a ./dist ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/var/www/lethbridgewind.com/public_html/
+        script: rm -R /var/www/lethbridgewind.com/public_html/*
+    
+    # Deploy to server
+    - name: Deploy Files to DO
+      run: rsync -a ./dist/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/var/www/lethbridgewind.com/public_html/
